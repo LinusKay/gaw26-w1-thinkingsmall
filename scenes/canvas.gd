@@ -76,6 +76,13 @@ func _handle_draw() -> void:
 
 
 func _on_memory_timer_timeout() -> void:
+	
+	memory_time_min_current = clamp(memory_time_min - (memory_time_decrease_by_quantity * memories.size()), 0, memory_time_min)
+	memory_time_max_current = clamp(memory_time_max - (memory_time_decrease_by_quantity * memories.size()), 0.2, memory_time_max)
+	memory_time = randf_range(memory_time_min_current, memory_time_max_current)
+	
+	memory_timer.start(memory_time)
+
 	if memories.size() > 0:
 		var memory_index: int = randi_range(0, memories.size()-1)
 		var memory: Dictionary = memories[memory_index]
@@ -84,11 +91,6 @@ func _on_memory_timer_timeout() -> void:
 		memory_line2d.default_color = memory.colour
 		memory_line2d.points = memory.points
 		memory_line2d.position = memory.position
+		memory_line2d.ttl = memory_time + 1.0
 		memory_line2d.is_memory = true
 		memory_line2d.complete = true
-	
-	memory_time_min_current = clamp(memory_time_min - (memory_time_decrease_by_quantity * memories.size()), 0, memory_time_min)
-	memory_time_max_current = clamp(memory_time_max - (memory_time_decrease_by_quantity * memories.size()), 0.2, memory_time_max)
-	memory_time = randf_range(memory_time_min_current, memory_time_max_current)
-	
-	memory_timer.start(memory_time)
