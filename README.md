@@ -31,7 +31,7 @@ I chose to soundtrack it with a selection of songs from Mid-Air Thief/Bird's Eye
 - *Towards*, by **새눈바탕 Bird's Eye Batang**, from the album *[Flood Format](https://midairthief.bandcamp.com/album/flood-format)*
 - *Are Your Wings Swept?*, by **새눈바탕 Bird's Eye Batang**, from the album *[Flood Format](https://midairthief.bandcamp.com/album/flood-format)*
 * [Squigglevision](https://godotshaders.com/shader/squigglevision/) shader by tentabrobpy
-* Krank sound effects by legoluft, [via OpenGameArt.org](https://opengameart.org/content/atmospheric-interaction-sound-pack)
+* *Krank* sound effects by **[legoluft](http://www.legoluft.de/)**, [via OpenGameArt.org](https://opengameart.org/content/atmospheric-interaction-sound-pack)
 * Thanks to 
   * Koder, Stella for hosting GAW
   * Ellie, for helping to get the Squigglevision shader working
