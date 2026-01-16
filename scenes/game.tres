@@ -1,0 +1,33 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://clxwb8l0jp820"]
+
+[ext_resource type="Texture2D" uid="uid://8ytemd3clk3j" path="res://textures/broder.png" id="1_wiudt"]
+[ext_resource type="Texture2D" uid="uid://dhqp2ve7wipjy" path="res://textures/swirl.png" id="2_e7kjh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p57ef"]
+texture = ExtResource("1_wiudt")
+modulate_color = Color(1, 1, 1, 0.72549)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0tnpc"]
+texture = ExtResource("1_wiudt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u5sy4"]
+texture = ExtResource("1_wiudt")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gp5j7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hjnvh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x7727"]
+
+[resource]
+default_font_size = 40
+Button/styles/hover = SubResource("StyleBoxTexture_p57ef")
+Button/styles/normal = SubResource("StyleBoxTexture_0tnpc")
+Button/styles/pressed = SubResource("StyleBoxTexture_u5sy4")
+HSlider/icons/grabber = ExtResource("2_e7kjh")
+HSlider/icons/grabber_disabled = ExtResource("2_e7kjh")
+HSlider/icons/grabber_highlight = ExtResource("2_e7kjh")
+HSlider/icons/tick = ExtResource("2_e7kjh")
+HSlider/styles/grabber_area = SubResource("StyleBoxEmpty_gp5j7")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_hjnvh")
+HSlider/styles/slider = SubResource("StyleBoxEmpty_x7727")

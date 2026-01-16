@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dt5qf446j6iag"]
+[gd_scene load_steps=8 format=3 uid="uid://dt5qf446j6iag"]
 
 [ext_resource type="Shader" uid="uid://di1deds60ar33" path="res://shaders/squigglevision.gdshader" id="1_mdbi0"]
 [ext_resource type="Texture2D" uid="uid://dotgjl7rj7m78" path="res://textures/squiggle.png" id="2_djbqq"]
 [ext_resource type="Script" uid="uid://dvwa8odowkrk4" path="res://scenes/pencil_line.gd" id="3_djbqq"]
+[ext_resource type="AudioStream" uid="uid://3x2sfwbuuac6" path="res://audio/sfx/part.wav" id="4_w7yri"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_lnu2h"]
 
@@ -30,5 +31,10 @@ script = ExtResource("3_djbqq")
 
 [node name="TtlTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_w7yri")
+volume_db = -10.0
+bus = &"sfx"
 
 [connection signal="timeout" from="TtlTimer" to="." method="_on_ttl_timer_timeout"]

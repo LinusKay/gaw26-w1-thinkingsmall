@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bofmqw74toil3"
+path="res://.godot/imported/새눈도둑 Bird's Eye Thief - Flash - 03 SPap.mp3-a22d8ab458b757109fa984dd0d85df6a.mp3str"
+
+[deps]
+
+source_file="res://audio/music/새눈도둑 Bird's Eye Thief - Flash - 03 SPap.mp3"
+dest_files=["res://.godot/imported/새눈도둑 Bird's Eye Thief - Flash - 03 SPap.mp3-a22d8ab458b757109fa984dd0d85df6a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

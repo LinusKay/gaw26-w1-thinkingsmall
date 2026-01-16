@@ -1,46 +1,56 @@
-[gd_scene load_steps=15 format=3 uid="uid://4k0ay3p54g82"]
+[gd_scene load_steps=17 format=3 uid="uid://4k0ay3p54g82"]
 
-[ext_resource type="Script" uid="uid://drlbeyrufxq3h" path="res://scenes/game.gd" id="1_u5sy4"]
 [ext_resource type="Script" uid="uid://d3toue76w1qaj" path="res://scenes/canvas.gd" id="1_uwrxv"]
-[ext_resource type="AudioStream" uid="uid://bu1xwf30li705" path="res://audio/music/새눈도둑 Bird's Eye Thief - Flash - 09 Open End.mp3" id="2_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://b7i38wg7x87nl" path="res://textures/PXL_20260115_082548228.png" id="3_lnu2h"]
-[ext_resource type="Script" uid="uid://ddg3i8h7e2xar" path="res://scenes/music_label.gd" id="4_lbhrr"]
+[ext_resource type="AudioStream" uid="uid://057olt0u3u41" path="res://audio/sfx/quick.mp3" id="4_gee14"]
+[ext_resource type="Script" uid="uid://wy72al0d86qr" path="res://scenes/audio_stream_player.gd" id="4_wjasw"]
 [ext_resource type="Shader" uid="uid://di1deds60ar33" path="res://shaders/squigglevision.gdshader" id="5_p57ef"]
-[ext_resource type="Texture2D" uid="uid://8ytemd3clk3j" path="res://textures/broder.png" id="6_u5sy4"]
+[ext_resource type="Script" uid="uid://li6dlibvp3l6" path="res://scenes/pause.gd" id="6_mr42r"]
+[ext_resource type="Theme" uid="uid://clxwb8l0jp820" path="res://scenes/game.tres" id="6_v4gap"]
+[ext_resource type="PackedScene" uid="uid://bmd273pvcjhv8" path="res://scenes/ui_slider_line2d.tscn" id="8_amq2i"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_lnu2h"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_12iaf"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lbhrr"]
-noise = SubResource("FastNoiseLite_lnu2h")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8kd1i"]
+noise = SubResource("FastNoiseLite_12iaf")
 seamless = true
 seamless_blend_skirt = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gee14"]
 shader = ExtResource("5_p57ef")
 shader_parameter/scale = Vector2(1, 1)
+shader_parameter/strength = 0.4
+shader_parameter/fps = 2.0
+shader_parameter/noise = SubResource("NoiseTexture2D_8kd1i")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fnbwt"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_js2ct"]
+noise = SubResource("FastNoiseLite_fnbwt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vf1le"]
+shader = ExtResource("5_p57ef")
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/strength = 0.3
+shader_parameter/fps = 6.0
+shader_parameter/noise = SubResource("NoiseTexture2D_js2ct")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6cr6t"]
+shader = ExtResource("5_p57ef")
+shader_parameter/scale = Vector2(1, 1)
 shader_parameter/strength = 1.0
 shader_parameter/fps = 2.0
-shader_parameter/noise = SubResource("NoiseTexture2D_lbhrr")
+shader_parameter/noise = SubResource("NoiseTexture2D_js2ct")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p57ef"]
-texture = ExtResource("6_u5sy4")
-modulate_color = Color(1, 1, 1, 0.7254902)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0tnpc"]
-texture = ExtResource("6_u5sy4")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u5sy4"]
-texture = ExtResource("6_u5sy4")
-
-[sub_resource type="Theme" id="Theme_vtaks"]
-default_font_size = 40
-Button/styles/hover = SubResource("StyleBoxTexture_p57ef")
-Button/styles/normal = SubResource("StyleBoxTexture_0tnpc")
-Button/styles/pressed = SubResource("StyleBoxTexture_u5sy4")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_it5iw"]
+shader = ExtResource("5_p57ef")
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/strength = 0.3
+shader_parameter/fps = 6.0
+shader_parameter/noise = SubResource("NoiseTexture2D_js2ct")
 
 [node name="Game" type="Node"]
 process_mode = 3
-script = ExtResource("1_u5sy4")
 
 [node name="Canvas" type="Control" parent="."]
 process_mode = 1
@@ -72,11 +82,11 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Canvas"]
 process_mode = 3
-stream = ExtResource("2_yqjtg")
-autoplay = true
+bus = &"music"
+script = ExtResource("4_wjasw")
 
 [node name="MusicLabel" type="RichTextLabel" parent="Canvas/AudioStreamPlayer"]
-modulate = Color(1.224127, 1.224127, 1.224127, 0)
+modulate = Color(1.22413, 1.22413, 1.22413, 0)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -87,12 +97,16 @@ grow_vertical = 0
 bbcode_enabled = true
 text = "[b][wave freq=2]♪ 새눈도둑 Bird's Eye Thief - Flash - 09 Open End[/wave][/b]"
 fit_content = true
-script = ExtResource("4_lbhrr")
 
 [node name="MusicLabelTimer" type="Timer" parent="Canvas/AudioStreamPlayer"]
 wait_time = 23.0
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayerDrawSfx" type="AudioStreamPlayer" parent="Canvas"]
+stream = ExtResource("4_gee14")
+volume_db = -20.0
+bus = &"sfx"
 
 [node name="Pause" type="Control" parent="."]
 process_mode = 3
@@ -103,6 +117,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("6_v4gap")
+script = ExtResource("6_mr42r")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pause"]
 layout_mode = 1
@@ -111,10 +127,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -130.5
-offset_top = -86.25
-offset_right = 130.5
-offset_bottom = 86.25
+offset_left = -130.0
+offset_top = -131.0
+offset_right = 131.0
+offset_bottom = 86.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -122,9 +138,51 @@ grow_vertical = 2
 material = SubResource("ShaderMaterial_gee14")
 layout_mode = 2
 size_flags_vertical = 3
-theme = SubResource("Theme_vtaks")
 text = "reset"
 
+[node name="VBoxVolSfx" type="HBoxContainer" parent="Pause/VBoxContainer"]
+material = SubResource("ShaderMaterial_gee14")
+layout_mode = 2
+
+[node name="Line2D2" parent="Pause/VBoxContainer/VBoxVolSfx" instance=ExtResource("8_amq2i")]
+
+[node name="Label" type="Label" parent="Pause/VBoxContainer/VBoxVolSfx"]
+material = SubResource("ShaderMaterial_vf1le")
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "sfx"
+horizontal_alignment = 2
+
+[node name="HSliderVolSfx" type="HSlider" parent="Pause/VBoxContainer/VBoxVolSfx"]
+material = SubResource("ShaderMaterial_6cr6t")
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+
+[node name="VBoxVolMusic" type="HBoxContainer" parent="Pause/VBoxContainer"]
+layout_mode = 2
+
+[node name="Line2D2" parent="Pause/VBoxContainer/VBoxVolMusic" instance=ExtResource("8_amq2i")]
+
+[node name="Label" type="Label" parent="Pause/VBoxContainer/VBoxVolMusic"]
+material = SubResource("ShaderMaterial_it5iw")
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "music"
+
+[node name="HSliderVolMusic" type="HSlider" parent="Pause/VBoxContainer/VBoxVolMusic"]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.1
+
 [connection signal="timeout" from="Canvas/MemoryTimer" to="Canvas" method="_on_memory_timer_timeout"]
+[connection signal="finished" from="Canvas/AudioStreamPlayer" to="Canvas/AudioStreamPlayer" method="_on_finished"]
+[connection signal="timeout" from="Canvas/AudioStreamPlayer/MusicLabelTimer" to="Canvas/AudioStreamPlayer" method="_on_music_label_timer_timeout"]
 [connection signal="timeout" from="Canvas/AudioStreamPlayer/MusicLabelTimer" to="Canvas/AudioStreamPlayer/MusicLabel" method="_on_music_label_timer_timeout"]
-[connection signal="pressed" from="Pause/VBoxContainer/ButtonReset" to="." method="_on_button_reset_pressed"]
+[connection signal="pressed" from="Pause/VBoxContainer/ButtonReset" to="Pause" method="_on_button_reset_pressed"]
+[connection signal="value_changed" from="Pause/VBoxContainer/VBoxVolSfx/HSliderVolSfx" to="Pause" method="_on_h_slider_vol_sfx_value_changed"]
+[connection signal="value_changed" from="Pause/VBoxContainer/VBoxVolMusic/HSliderVolMusic" to="Pause" method="_on_h_slider_vol_music_value_changed"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8ladnxtis5h6"
+path="res://.godot/imported/새눈바탕 Bird's Eye Batang - 손을 모아 Flood Format - 08 수 Are Your Wings Swept-.mp3-6544668fdb7c1cc3332366ae767b0417.mp3str"
+
+[deps]
+
+source_file="res://audio/music/새눈바탕 Bird's Eye Batang - 손을 모아 Flood Format - 08 수 Are Your Wings Swept-.mp3"
+dest_files=["res://.godot/imported/새눈바탕 Bird's Eye Batang - 손을 모아 Flood Format - 08 수 Are Your Wings Swept-.mp3-6544668fdb7c1cc3332366ae767b0417.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

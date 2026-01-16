@@ -1,6 +1,8 @@
 class_name PencilLine extends Line2D
 
-var max_line_width: float = 100
+var max_line_width: float = 300
+
+var is_memory: bool = false
 
 var complete: bool = false:
 	set(_complete):
@@ -30,6 +32,10 @@ var colours: Array[Color] = [
 
 
 @onready var ttl_timer: Timer = $TtlTimer
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+
+@onready var sfx_wall: AudioStream = preload("res://audio/sfx/wall.wav")
+@onready var sfx_part: AudioStream = preload("res://audio/sfx/part.wav")
 
 
 func _ready() -> void:
@@ -37,22 +43,26 @@ func _ready() -> void:
 	
 
 func _draw_complete() -> void:
+	if is_memory:
+		audio_stream_player.stream = sfx_wall
+	else:
+		audio_stream_player.stream = sfx_part
+	audio_stream_player.pitch_scale = randf_range(0.7,1.3)
+	audio_stream_player.play()
 	_calc_resize()
 
 
 func _process(_delta: float) -> void:
-		
 	if complete:
-		
 		if ttl_timer.is_stopped():
 			ttl_timer.start(ttl)
 			
-		#if resizing:
-			#if scale.x > resize_goal:
-				#scale.x = lerp(scale.x, resize_goal, resize_step)
-				#scale.y = lerp(scale.y, resize_goal, resize_step)
-			#else:
-				#resizing = false
+		if resizing:
+			if scale.x > resize_goal:
+				scale.x = lerp(scale.x, resize_goal, resize_step)
+				scale.y = lerp(scale.y, resize_goal, resize_step)
+			else:
+				resizing = false
 	
 		if fading:
 			position.y += .1

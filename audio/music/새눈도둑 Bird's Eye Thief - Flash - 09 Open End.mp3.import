@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/새눈도둑 Bird's Eye Thief - Flash - 09 Op
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0.0
 bpm=0.0
 beat_count=0

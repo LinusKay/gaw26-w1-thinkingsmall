@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmd273pvcjhv8"]
+
+[ext_resource type="Shader" path="res://shaders/squigglevision.gdshader" id="1_h1hll"]
+[ext_resource type="Texture2D" uid="uid://dotgjl7rj7m78" path="res://textures/squiggle.png" id="2_4s8i3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lnu2h"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lbhrr"]
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_lnu2h")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c83r5"]
+shader = ExtResource("1_h1hll")
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/strength = 15.0
+shader_parameter/fps = 6.0
+shader_parameter/noise = SubResource("NoiseTexture2D_lbhrr")
+
+[node name="Line2D2" type="Line2D"]
+modulate = Color(1, 1, 1, 0.466667)
+material = SubResource("ShaderMaterial_c83r5")
+position = Vector2(-447, -351)
+points = PackedVector2Array(520, 364, 704, 363)
+texture = ExtResource("2_4s8i3")
+texture_mode = 1
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2

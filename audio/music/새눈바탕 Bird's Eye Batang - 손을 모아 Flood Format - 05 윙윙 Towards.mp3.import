@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dfk3c10hbel54"
+path="res://.godot/imported/새눈바탕 Bird's Eye Batang - 손을 모아 Flood Format - 05 윙윙 Towards.mp3-15f8df20ca1cb9fd22b5a3187b34d7ff.mp3str"
+
+[deps]
+
+source_file="res://audio/music/새눈바탕 Bird's Eye Batang - 손을 모아 Flood Format - 05 윙윙 Towards.mp3"
+dest_files=["res://.godot/imported/새눈바탕 Bird's Eye Batang - 손을 모아 Flood Format - 05 윙윙 Towards.mp3-15f8df20ca1cb9fd22b5a3187b34d7ff.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
